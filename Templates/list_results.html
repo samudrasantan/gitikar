@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+       
+         <title>
+            গীতিকার
+        </title>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <script src="http://www.w3schools.com/appml/2.0.2/appml.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+    
+    <body>
+        {# সার্চবার আর শিরোনাম যোগ করা হলো #}
+        <div>{% include "search_form_page.html" %}</div>
+        
+        {# বর্ণ তালিকা যুক্ত করা হল #}
+        <div class="header center">
+            {% include "alphabet_list_iso.html" %}
+        </div>
+
+        {# তালিকা #}
+        <div class="container">
+            <div class="jumbotron center">
+                <div class="row">
+                
+                    {% if a_gaan.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">গান</li>
+                            {%for i in a_gaan.all %}
+                            <a href="http://{{web_adress}}/gaan/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                
+                    {% if a_album.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">এলবাম</li>
+                            {%for i in a_album.all %}
+                            <a href="http://{{web_adress}}/album_details/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                
+                    {% if a_gitikar.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">গীতিকার</li>
+                            {%for i in a_gitikar.all %}
+                            <a href="http://{{web_adress}}/shilpi/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                
+                    {% if a_band.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">ব্যান্ড</li>
+                            {%for i in a_band.all %}
+                            <a href="http://{{web_adress}}/band_details/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                
+                    {% if a_prokashok.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">প্রকাশক</li>
+                            {%for i in a_prokashok.all %}
+                            <a href="http://{{web_adress}}/prokashok/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                
+                    {% if a_shilpi.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">শিল্পী</li>
+                            {%for i in a_shilpi.all %}
+                            <a href="http://{{web_adress}}/shilpi/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                
+                    {% if a_catagory.all %}
+                    <div class="col-sm-2">
+                        <ul class="list-group">
+                            <li class="list-group-item active">ধরণ</li>
+                            {%for i in a_catagory.all %}
+                            <a href="http://{{web_adress}}/catagory/{{i.id}}" class="list-group-item">{{i}}</a>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                    {% endif %}
+            
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

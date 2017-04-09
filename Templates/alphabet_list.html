@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+  
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="http://www.w3schools.com/appml/2.0.2/appml.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+
+    {% include "search_form_page.html" %}
+     <div class="container">
+    <ul class="pagination">
+        {% for i in combined_list%}
+  <li><a href="http://{{web_adress}}/list/{{i}}">{{i}}</a></li> {%endfor%}      
+</ul>
+         </div></div>
+    
+    
+</body>
+</html>

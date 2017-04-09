@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+ 
+{% block title %}{{ title }} | {% trans 'গীতিকার' %}{% endblock %}
+ 
+{% block branding %}
+<style type="text/css">
+    #header {
+        background-color: White;
+        
+    }
+    #site-name {
+      color: #34495e
+           !Important; 
+    }
+    
+</style>
+<h1 id="site-name">{% trans 'গীতিকার' %}</h1>
+{% endblock %}
+ 
+{% block nav-global %}{% endblock %}
+

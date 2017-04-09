@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://www.w3schools.com/appml/2.0.2/appml.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+   {% include "search_form_page.html" %}
+    
+    <div class="container"
+    <div class="list-group">
+        {% if gaan %}
+        {% for i in gaan %}
+        
+        
+        <a href="http://{{web_adress}}/gaan/{{i.id}}" class="list-group-item"><p>{{i.lyric|truncatechars:200}}</p></a>
+      
+        {% endfor %}  
+        {% else %}
+       <div class="container center"></div><p class='search_instruction'> আপনার অনুসন্ধান পাওয়া যায় নি। আরো যথাপোযুক্ত শব্দ ব্যবহার করুন, অথবা আমাদের বর্ণানুক্রমিক সন্ধান ব্যবহার করুণ। </p></div>
+       <div class="header center"> {% include "alphabet_list_iso.html" %} </div>
+          {% endif %}
+    </div></div>
+
+   <div class="row">
+       {% if album %}
+  <div class="col-sm-2" style="background-color: #ffd800">{% for i in album %} <li>{{i.title}}</div> {% endfor %}</div> {% endif %}
+ <div class="col-sm-2" style="background-color: #ff6a00"></div>
+</div>
+     
+
+</body>
+</html>

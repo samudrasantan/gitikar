@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  
+<head>
+  <title>{{album}}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://www.w3schools.com/appml/2.0.2/appml.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+<script>
+    $(document).ready(function () {
+        $(".sound").each(function () {
+            $(this).click(function () {
+                $(this).animate({
+                    height: 'toggle'
+                });
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".you").each(function () {
+            $(this).click(function () {
+                $(this).animate({
+                    height: 'toggle'
+                });
+            });
+        });
+    });
+</script>
+
+    
+</head>
+    
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div>
+                {% include "search_form_page-2.html" %}
+            </div>
+            
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    
+                     <a href="http://{{web_adress}}/album_details/{{album.id}}" class="navbar-brand">[ {{album.title}} ]</a>  
+                </div>
+                
+                <div>
+                    <div class="collapse navbar-collapse" id="myNavbar">
+                        <ul class="nav navbar-nav">
+                            {%for i in gaan%}
+                            <li class="hover"><a href="#{{i}}">{{i}}</a></li>
+                            {%endfor%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        
+        {%for i in gaan%}
+        <div id="{{i}}" class="{% cycle "section1" "section2"%} slideanim">
+            <div class="row">
+                <div id="lyric_head">
+                    <h1>{{i}}</h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-5">
+                    <p>{{i.lyric|linebreaks}}</p>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="row" style="height: 100%; position: relative">
+                        
+                        {% if i.sound %}
+                        <div class="center sound" style="height: 110px; width: 600px; border: 1px; background-color: #fff; position:  absolute" id="{{i.title}}">
+                            <img src="{% static "img/sc.png" %}" height="50px"/>
+                        </div>
+                        
+                        <div id="cloud">
+                            <iframe width="580" height="110" scrolling="no" frameborder="no" src="{{i.sound}};auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;visual=false"></iframe>
+
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    
+                    </br>
+                    
+                    <div class="row" style="height: 100%; position:relative">
+                        
+                        {% if i.video %}
+                        <div class="center you" style="height: 320px; width: 600px; border: 1px; position:  absolute; background-color: #fff" id="sound"></br>
+                            </br>
+                            </br>
+                            </br>
+                            </br>
+                            </br>
+                            </br>
+                            <img src="{% static "img/yt.png" %}" width="500px"/>
+                        </div>
+
+                        <div id="cloud">
+                            
+                            <iframe width="580" height="315" src="{{i.video}}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        {% endif %}
+                    
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="foot_notes">
+                    {% if i.gitikar.all%}
+                    <span class="label-default">
+                        গীতিকারঃ
+                    </span> 
+    
+                    {%for n in i.gitikar.all%}
+                    <span class="label-result">
+                        <a href="http://{{web_adress}}/gitikar/{{n.id}}">
+                            {{n}}
+                        </a>
+                    </span>
+                    
+                    {% if not forloop.last %},
+                    {%endif%}
+
+                    {%endfor%}
+                    {%endif%}
+                    
+                    {% if i.bandname.all%}
+                    <span class="label-default">
+                        ব্যান্ডঃ
+                    </span>
+                    {%for n in i.bandname.all%}
+                    <span class="label-result">
+                        <a href="http://{{web_adress}}/band/{{n.id}}">
+                            {{n}}
+                        </a>
+                    </span>
+                    
+                    {% if not forloop.last %},
+                    {%endif%}
+                    
+                    {%endfor%}
+                    {%endif%}
+                    
+                    {% if i.albumname.all%}
+                    
+                    <span class="label-default">
+                        এলবামঃ
+                    </span>
+                    
+                    <span class="label-result">
+                        {%for n in i.albumname.all%}
+                        <a href="http://{{web_adress}}/album/{{n.id}}">
+                            {{n}}
+                        </a>
+                    </span>
+                    
+                    {% if not forloop.last %},
+                    {%endif%}
+                    
+                    {%endfor%}
+                    {%endif%}
+                    
+                    {% if i.catagory.all%}
+                    
+                    <span class="label-default">
+                        ক্যাটাগরীঃ
+                    </span>
+
+                    <span class="label-result">
+                        {%for n in i.catagory.all%}
+                        <a href="http://{{web_adress}}/catagory/{{n.id}}">
+                            {{n}}
+                        </a>
+                    </span>
+                    
+                    {% if not forloop.last %},
+                    {%endif%}
+                    
+                    {%endfor%}
+                    {%endif%}
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+   
+</body>
+</html>
